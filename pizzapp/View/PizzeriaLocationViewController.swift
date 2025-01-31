@@ -72,10 +72,8 @@ class PizzeriaLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .systemBackground
         setupView()
-        
         viewModel.delegate = self
         mapView.delegate = self
     }
@@ -116,32 +114,32 @@ extension PizzeriaLocationViewController: PizzeriaLocationViewModelDelegate {
     func showDirectionsOverlay(overlay: MKPolyline) {
         mapView.addOverlay(overlay)
     }
-    
-    func updateUserLocation(userLocation: CLLocationCoordinate2D) {
-        let userAnnotation = MKPointAnnotation()
-        userAnnotation.coordinate = userLocation
-        
-        mapView.addAnnotation(userAnnotation)
-        
-        let mapRegion = MKCoordinateRegion(center: userLocation,
+
+    func setPizzeriaAnnotation(location: CLLocationCoordinate2D) {
+        let pizzeriaAnnotation = MKPointAnnotation()
+        pizzeriaAnnotation.coordinate = location
+        mapView.addAnnotation(pizzeriaAnnotation)
+
+        var mapRegion: MKCoordinateRegion
+
+        if let center = viewModel.centerBetweenLocations,
+           let span = viewModel.spanBetweenLocations {
+            mapRegion = MKCoordinateRegion(center: center,
+                                               span: span)
+           }
+        else{
+            mapRegion = MKCoordinateRegion(center: location,
                                            span: MKCoordinateSpan(latitudeDelta: 0.01,
                                                                   longitudeDelta: 0.01))
+        }
+         mapView.region = mapRegion
         
-        mapView.region = mapRegion
+    }
+
+    func updateMapRegion(region: MKCoordinateRegion) {
+        mapView.setRegion(region, animated: true)
     }
     
-    func showPizzeriaLocation(location: CLLocationCoordinate2D) {
-        let userAnnotation = MKPointAnnotation()
-        userAnnotation.coordinate = location
-        
-        mapView.addAnnotation(userAnnotation)
-        
-        let mapRegion = MKCoordinateRegion(center: location,
-                                           span: MKCoordinateSpan(latitudeDelta: 0.01,
-                                                                  longitudeDelta: 0.01))
-        
-        mapView.region = mapRegion
-    }
 }
 
 // MARK: - MKMapViewDelegate
@@ -152,6 +150,8 @@ extension PizzeriaLocationViewController: MKMapViewDelegate {
         
         let annotationView = MKAnnotationView(annotation: annotation,
                                               reuseIdentifier: nil)
+
+        annotationView.image = viewModel.pizzeriaPinImage
         
         return annotationView
     }
@@ -163,3 +163,6 @@ extension PizzeriaLocationViewController: MKMapViewDelegate {
         return renderer
     }
 }
+
+
+

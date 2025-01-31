@@ -11,17 +11,23 @@ import MapKit
 import CoreLocation
 
 protocol PizzeriaLocationViewModelDelegate: AnyObject {
-    func updateUserLocation(userLocation: CLLocationCoordinate2D)
-    func showPizzeriaLocation(location: CLLocationCoordinate2D)
+    func setPizzeriaAnnotation(location: CLLocationCoordinate2D)
     func showDirectionsOverlay(overlay: MKPolyline)
+    func updateMapRegion(region: MKCoordinateRegion)
 }
 
 class PizzeriaLocationViewModel: NSObject {
     private let pizzeria: Pizzeria
+
+    let pizzeriaPinImage = UIImage(named: "pizza_pin") 
     
     private let locationManager = CLLocationManager()
     
     private(set) var userLocation: CLLocationCoordinate2D?
+
+    private(set) var centerBetweenLocations: CLLocationCoordinate2D?
+
+    private(set) var spanBetweenLocations: MKCoordinateSpan?
     
     weak var delegate: PizzeriaLocationViewModelDelegate?
     
@@ -29,9 +35,9 @@ class PizzeriaLocationViewModel: NSObject {
         self.pizzeria = pizzeria
         super.init()
         initializerForLocationManager()
-        showPizzeriaLocation()
-        showsUserLocation()
         locationManager.delegate = self
+        updateMKMapViewParameters()
+        showsLocations()
     }
     
     func initializerForLocationManager() {
@@ -41,41 +47,37 @@ class PizzeriaLocationViewModel: NSObject {
 
     }
 
-     func centerMap(_ loc1: CLLocationCoordinate2D, _ loc2: CLLocationCoordinate2D) {
-        // Calcular el centro entre ambas ubicaciones
-        let centerLatitude = (loc1.latitude + loc2.latitude) / 2
-        let centerLongitude = (loc1.longitude + loc2.longitude) / 2
-        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
+    func updateMKMapViewParameters() {
+    guard let userLocation = userLocation, 
+          let pizzeriaLocation = pizzeria.location else { return }
 
-        // Calcular la diferencia para definir el span
-        let latDelta = abs(loc1.latitude - loc2.latitude) * 1.5
-        let lonDelta = abs(loc1.longitude - loc2.longitude) * 1.5
-        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
+    let centerLatitude = (userLocation.latitude + pizzeriaLocation.latitude) / 2
+    let centerLongitude = (userLocation.longitude + pizzeriaLocation.longitude) / 2
+    centerBetweenLocations = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
 
-        // Establecer la región en el mapa
-        let region = MKCoordinateRegion(center: center, span: span)
-        mapView.setRegion(region, animated: true)
+    let latDelta = max(abs(userLocation.latitude - pizzeriaLocation.latitude) * 1.5, 0.02)
+    let lonDelta = max(abs(userLocation.longitude - pizzeriaLocation.longitude) * 1.5, 0.02)
 
-        // Opcional: Añadir pines en ambas ubicaciones
-        addPin(at: loc1, title: "San Francisco")
-        addPin(at: loc2, title: "Los Ángeles")
+    spanBetweenLocations = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
+
+    DispatchQueue.main.async {
+        let mapRegion = MKCoordinateRegion(center: self.centerBetweenLocations!,
+                                           span: self.spanBetweenLocations!)
+        self.delegate?.updateMapRegion(region: mapRegion)
     }
+}
 
 
-    func showsUserLocation() {
-        guard let userLocation = userLocation else { return }
-        
-        delegate?.updateUserLocation(userLocation: userLocation)
-    }
-    
-    func showPizzeriaLocation() {
-        guard let location = pizzeria.location else { return }
+    func showsLocations() {
+        guard let pizzeriaLocation = pizzeria.location else { return }
         
         let pizzeriaLocation = CLLocationCoordinate2D(latitude: location.latitude,
                                                      longitude: location.longitude)
         
-        delegate?.showPizzeriaLocation(location: pizzeriaLocation)
+        delegate?.setPizzeriaAnnotation(location: pizzeriaLocation)
+
     }
+    
     
     func didTapShowDirectionButton() {
         guard let userLocation, let pizzeriaLocation = pizzeria.location else { return }
@@ -88,7 +90,7 @@ class PizzeriaLocationViewModel: NSObject {
         directionsRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation))
         directionsRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: pizzeriaCoordinte))
         
-        directionsRequest.transportType = .transit
+        directionsRequest.transportType = .automobile
         
         let directions = MKDirections(request: directionsRequest)
         
@@ -111,5 +113,6 @@ extension PizzeriaLocationViewModel: CLLocationManagerDelegate {
                                                 longitude: location.coordinate.longitude)
         
         userLocation = coordinate
+        updateMKMapViewParameters()
     }
 }
