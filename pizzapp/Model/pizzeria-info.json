@@ -1,0 +1,52 @@
+[
+  {
+    "name": "La Casa de la Pizza",
+    "address": "Av. Miguel Ángel de Quevedo 100, Coyoacán, 04000 Ciudad de México, CDMX",
+    "coordinates": null
+  },
+  {
+    "name": "Pizzería Napolitana",
+    "address": "Parque Centenario 9, Coyoacán, 04000 Ciudad de México, CDMX",
+    "coordinates": null
+  },
+  {
+    "name": "Il Forno di Gio",
+    "address": "Jardín Plaza Hidalgo 25, Coyoacán, 04000 Ciudad de México, CDMX",
+    "coordinates": {
+      "latitude": 19.354980,
+      "longitude": -99.158690
+    }
+  },
+  {
+    "name": "Pizza del Perro Negro",
+    "address": "Av. México 111, Coyoacán, 04100 Ciudad de México, CDMX",
+    "coordinates": {
+      "latitude": 19.361240,
+      "longitude": -99.170280
+    }
+  },
+  {
+    "name": "Pizzicato Gourmet",
+    "address": "Calle Xicoténcatl 276, Del Carmen, Coyoacán, 04100 Ciudad de México, CDMX",
+    "coordinates": {
+      "latitude": 19.348730,
+      "longitude": -99.162830
+    }
+  },
+  {
+    "name": "Universo Pizza",
+    "address": "Circuito Universitario, C.U., 04510 Ciudad de México, CDMX",
+    "coordinates": {
+      "latitude": 19.324540,
+      "longitude": -99.186030
+    }
+  },
+  {
+    "name": "Pizza CU",
+    "address": "Av. Universidad 3000, Universidad Nacional Autónoma de México, C.U., 04510 Ciudad de México, CDMX",
+    "coordinates": {
+      "latitude": 19.317380,
+      "longitude": -99.184220
+    }
+  }
+]
