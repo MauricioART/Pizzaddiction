@@ -2,7 +2,7 @@
 import UIKit
 import Lottie
 
-class pizzeriaDetailViewController{
+class PizzeriaDetailViewController: UIViewController{
     private let viewModel : PizzeriaDetailViewModel
 
     private lazy var locationLabel: UILabel = {
@@ -25,7 +25,7 @@ class pizzeriaDetailViewController{
         return label
     }()
 
-    private var showLocationButton: UIButton = {
+    private lazy var showLocationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         var config = UIButton.Configuration.filled()
@@ -39,20 +39,20 @@ class pizzeriaDetailViewController{
         button.configuration = config
 
         button.addTarget(self, action: #selector(didTapShowLocationButton), for: .touchUpInside)
+        
         return button
     }()
 
-    private var animationView : LottieAnimationView = {}(
-        let animation = LottieAnimationView(name: "pizza-animation-2")
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.play()
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        return animation
-    ) 
+//    private var animationView : LottieAnimationView = {}(
+//        let animation = LottieAnimationView(name: "pizza-animation-2")
+//        animationView.contentMode = .scaleAspectFit
+//        animationView.loopMode = .loop
+//        animationView.play()
+//        animationView.translatesAutoresizingMaskIntoConstraints = false
+//        return animation
+//    ) 
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
-        view.title = viewModel.name
         super.viewDidLoad()
         setupView()
     }
@@ -61,24 +61,35 @@ class pizzeriaDetailViewController{
         self.viewModel = PizzeriaDetailViewModel(pizzeria: pizzeria)
         super.init(nibName: nil, bundle: nil)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func setupView(){
         
-        view.addSubview(animationView)
+        let animation = LottieAnimationView(name: "pizza-animation-2")
+        animation.contentMode = .scaleAspectFit
+        animation.loopMode = .loop
+        animation.play()
+        animation.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        view.addSubview(animation)
         view.addSubview(locationLabel)
         view.addSubview(addressLabel)
 
         NSLayoutConstraint.activate([
-            animationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            animationView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            animation.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            animation.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            animation.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            animation.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
 
-            locationLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 8),
+            locationLabel.topAnchor.constraint(equalTo: animation.bottomAnchor, constant: 8),
             locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            addressLabel.topAnchor.constraint(equalTo: lo.bottomAnchor, constant: 16),
+            addressLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 16),
             addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])

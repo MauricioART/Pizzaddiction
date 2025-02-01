@@ -3,7 +3,7 @@ import Foundation
 
 class PizzeriaDetailViewModel {
     
-    private let pizzeria: Pizzeria
+    let pizzeria: Pizzeria
     
     init(pizzeria: Pizzeria) {
         self.pizzeria = pizzeria
