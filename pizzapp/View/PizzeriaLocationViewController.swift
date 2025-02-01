@@ -64,6 +64,7 @@ class PizzeriaLocationViewController: UIViewController {
     init(pizzeria: Pizzeria) {
         self.viewModel = PizzeriaLocationViewModel(pizzeria: pizzeria)
         super.init(nibName: nil, bundle: nil)
+        viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -74,7 +75,7 @@ class PizzeriaLocationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupView()
-        viewModel.delegate = self
+        viewModel.showsLocations()
         mapView.delegate = self
     }
     
@@ -93,7 +94,7 @@ class PizzeriaLocationViewController: UIViewController {
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
-            showDirectionsButton.bottomAnchor.constraint(equalTo: showPizzeriaLocation.topAnchor, constant: 8),
+            showDirectionsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
             showDirectionsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -150,11 +151,17 @@ extension PizzeriaLocationViewController: MKMapViewDelegate {
         
         let annotationView = MKAnnotationView(annotation: annotation,
                                               reuseIdentifier: nil)
-
-        annotationView.image = viewModel.pizzeriaPinImage
+        if let originalImage = viewModel.pizzeriaPinImage {
+                let size = CGSize(width: 80, height: 80)  // Aquí defines el nuevo tamaño de la imagen
+                let resizedImage = originalImage.resizedImage(with: size)
+                annotationView.image = resizedImage
+            }
+        
         
         return annotationView
     }
+    
+    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
@@ -165,4 +172,12 @@ extension PizzeriaLocationViewController: MKMapViewDelegate {
 }
 
 
-
+extension UIImage {
+    func resizedImage(with size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, self.scale)
+        self.draw(in: CGRect(origin: .zero, size: size))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return resizedImage ?? self
+    }
+}

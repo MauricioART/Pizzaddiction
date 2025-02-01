@@ -19,7 +19,7 @@ protocol PizzeriaLocationViewModelDelegate: AnyObject {
 class PizzeriaLocationViewModel: NSObject {
     private let pizzeria: Pizzeria
 
-    let pizzeriaPinImage = UIImage(named: "pizza_pin") 
+    let pizzeriaPinImage = UIImage(named: "pizza-pin") 
     
     private let locationManager = CLLocationManager()
     
@@ -29,7 +29,7 @@ class PizzeriaLocationViewModel: NSObject {
 
     private(set) var spanBetweenLocations: MKCoordinateSpan?
     
-    weak var delegate: PizzeriaLocationViewModelDelegate?
+     var delegate: PizzeriaLocationViewModelDelegate?
     
     init(pizzeria: Pizzeria) {
         self.pizzeria = pizzeria
@@ -37,7 +37,7 @@ class PizzeriaLocationViewModel: NSObject {
         initializerForLocationManager()
         locationManager.delegate = self
         updateMKMapViewParameters()
-        showsLocations()
+//        showsLocations()
     }
     
     func initializerForLocationManager() {
@@ -69,7 +69,7 @@ class PizzeriaLocationViewModel: NSObject {
 
 
     func showsLocations() {
-        guard let pizzeriaLocation = pizzeria.location else { return }
+        guard let location = pizzeria.location else { return }
         
         let pizzeriaLocation = CLLocationCoordinate2D(latitude: location.latitude,
                                                      longitude: location.longitude)
