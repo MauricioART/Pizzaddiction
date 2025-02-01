@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
 
-    private let viewModel = FavoritesViewModel()
+    private let viewModel = FavoritesTableViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,15 @@ class FavoritesTableViewController: UITableViewController {
 //        let authenticationViewController = AuthenticationViewController()
 //        present(authenticationViewController, animated: true)
 //    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        tableView.reloadData()
+    }
 
     @objc func updateFavorites(){
         viewModel.updateFavorites()
+//        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +62,6 @@ class FavoritesTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.pizzaViewModel.pizzaCellIdentifier, for: indexPath )
             var cellConfiguration = cell.defaultContentConfiguration()
             
-            var pizza = viewModel.pizza(at: indexPath)
             
             cellConfiguration.text = viewModel.pizza(at: indexPath).name
             cellConfiguration.secondaryText = viewModel.pizzaViewModel.getIngredients(at: indexPath)
@@ -82,9 +87,9 @@ class FavoritesTableViewController: UITableViewController {
         switch(indexPath.section){
         case 0:
             let pizza = viewModel.pizza(at: indexPath)
-            let pizzaViewController = PizzaViewController(pizza: pizza)
+            let pizzaDetailViewController = PizzaDetailViewController(pizza: pizza)
             
-            navigationController?.pushViewController(pizzaViewController,
+            navigationController?.pushViewController(pizzaDetailViewController,
                                                      animated: true)
         case 1:
             let pizzeria = viewModel.pizzeria(at: indexPath)

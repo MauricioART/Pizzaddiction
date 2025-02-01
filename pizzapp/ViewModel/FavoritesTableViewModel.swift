@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol FavoritesViewModelDelegate{
+protocol FavoritesViewModelDelegate : AnyObject{
     func shouldReloadTable()
 }
 
-class FavoritesViewModel {
+class FavoritesTableViewModel {
     private let favoritePizzaDataName = "favorite-pizza"
     private let favoritePizzeriaDataName = "favorite-pizzeria"
     private let DataExtension = "json"
