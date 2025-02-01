@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class IngredientsTableViewController: UITableViewController {
 
@@ -16,7 +17,7 @@ class IngredientsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.title = "Create custom pizza"
+        title = "Custom pizza"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: viewModel.ingredientCellIdentifier)
         viewModel.delegate = self
 
@@ -46,7 +47,6 @@ class IngredientsTableViewController: UITableViewController {
         if viewModel.isSelected(ingredient: ingredient) {
             cellConfiguration.textProperties.font = UIFont.boldSystemFont(ofSize: 16)
             cellConfiguration.image = UIImage(systemName: "checkmark")
-            cellConfiguration.imageProperties.alignment = .leading
         } else {
             cellConfiguration.textProperties.color = .black
         }
@@ -76,14 +76,42 @@ class IngredientsTableViewController: UITableViewController {
         createPizzaButton.isEnabled = viewModel.selectedIngredientsCount > 0
     }
 
+    
     @objc private func didTapCreatePizzaButton() {
-        showInputAlert(in: self){
-            [weak self] pizzaName in
-            viewModel.createPizza(name: pizzaName)
-            viewModel.removeAllIngredients()
-            self?.tableView.reloadData()
+        showInputAlert(in: self) { [weak self] pizzaName in
+            guard let self = self, let pizzaName = pizzaName else { return }
+
+            if self.viewModel.createPizza(name: pizzaName) {
+                self.viewModel.removeAllIngredients()
+
+                // Crear la animación Lottie
+                let animationView = LottieAnimationView(name: "created")
+                animationView.contentMode = .scaleAspectFit
+                animationView.loopMode = .playOnce  // Solo se reproducirá una vez
+                animationView.play { (finished) in
+                    // Cuando la animación termine, la eliminamos de la vista
+                    if finished {
+                        animationView.removeFromSuperview()
+                    }
+                }
+
+                // Configuración de la animación
+                animationView.translatesAutoresizingMaskIntoConstraints = false
+                self.view.addSubview(animationView)
+                
+                // Configuración de restricciones para centrar la animación
+                NSLayoutConstraint.activate([
+                    animationView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                    animationView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+                    animationView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
+                ])
+
+                // Recargar la tabla después de la acción
+                self.tableView.reloadData()
+            }
         }
     }
+
 }
 
 extension IngredientsTableViewController: IngredientsViewModelDelegate {

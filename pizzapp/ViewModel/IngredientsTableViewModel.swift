@@ -64,9 +64,14 @@ class IngredientsTableViewModel{
         delegate?.shouldReloadTableData()
     }
 
-    func createPizza(name: String){
+    func createPizza(name: String)->Bool{
+        guard !name.isEmpty else { return false }
         let pizza = Pizza(name: name, ingredients: Array(selectedIngredients))
-        PizzaListTableViewModel().addPizza(pizza: pizza)
+        var pizzaList = PizzaListTableViewModel().getPizzaList()
+        pizzaList.append(pizza)
+        PizzaListTableViewModel().updatePizzaData(pizzaList)
+        return true
+        
     }
     
     func isSelected(ingredient: String) -> Bool {
