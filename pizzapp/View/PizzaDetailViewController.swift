@@ -105,9 +105,9 @@ class PizzaDetailViewController: UIViewController {
             animationView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
             ingredientsTitleLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor,constant: 10),
             ingredientsTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            ingredientsStackView.topAnchor.constraint(equalTo: ingredientsTitleLabel.bottomAnchor,constant: 10),
-            ingredientsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            ingredientsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
+            ingredientsStackView.topAnchor.constraint(equalTo: ingredientsTitleLabel.bottomAnchor,constant: 20),
+            ingredientsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            ingredientsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40)
         ])
         
         addIngredientsToStack()
@@ -117,13 +117,13 @@ class PizzaDetailViewController: UIViewController {
     func addIngredientsToStack() {
         guard !viewModel.ingredients.isEmpty else { return }
         let ingredients = viewModel.ingredients
-        for (index,ingredient) in ingredients.enumarated() {
+        for (index,ingredient) in ingredients.enumerated() {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = "\(index + 1).-" + ingredient
             label.adjustsFontForContentSizeCategory = true
             label.font = .preferredFont(forTextStyle: .subheadline)
-            label.textAligment = .left
+            label.textAlignment = .left
             ingredientsStackView.addArrangedSubview(label)
         }
     }
