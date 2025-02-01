@@ -13,12 +13,13 @@ class PizzaListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Pizzas"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: viewModel.pizzaCellIdentifier)
         viewModel.delegate = self
 
     }
 
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -49,7 +50,7 @@ class PizzaListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let pizza = viewModel.pizza(at: indexPath)
-        let pizzaViewController = PizzaViewController(pizza: pizza)
+        let pizzaViewController = PizzaDetailViewController(pizza: pizza)
         
         navigationController?.pushViewController(pizzaViewController,
                                                  animated: true)
@@ -67,6 +68,8 @@ class PizzaListTableViewController: UITableViewController {
             }else{
                 self?.viewModel.addPizzaToFavorites(at: indexPath)
             }
+            self?.viewModel.saveFavoritePizza()
+            NotificationCenter.default.post(name: .favoritesUpdated, object: nil)
             completion(true)
             
         }
@@ -80,16 +83,11 @@ class PizzaListTableViewController: UITableViewController {
             favoriteAction.image = UIImage(systemName: "heart")
         }
         
-        NotificationCenter.default.post(name: .favoritesUpdated, object: nil)
         
         return UISwipeActionsConfiguration(actions: [favoriteAction])
     }
 
-
-
 }
-
-
 
 extension PizzaListTableViewController: PizzaListViewModelDelegate {
     func shouldReloadTableData() {

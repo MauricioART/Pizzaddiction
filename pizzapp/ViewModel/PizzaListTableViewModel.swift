@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PizzaListViewModelDelegate {
+protocol PizzaListViewModelDelegate : AnyObject{
     func shouldReloadTableData()
 }
 
@@ -24,7 +24,11 @@ class PizzaListTableViewModel {
     var pizzaCount: Int { pizzaList.count }
     var favoritePizzaCount: Int { favoritePizza.count }
     
-    var delegate: PizzaListViewModelDelegate?
+    func getPizzaList()->[Pizza]{
+        pizzaList
+    }
+    
+    weak var delegate: PizzaListViewModelDelegate?
     
     init() {
         copyPizzaInfoToDocumentsIfNeeded()
@@ -38,7 +42,7 @@ class PizzaListTableViewModel {
     }
     
     private func getPizzaInfoFileURL() -> URL? {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)?.first?.appendingPathComponent("\(pizzaInfoFileName).\(pizzaInfoFileExtension)")
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(pizzaInfoFileName).\(pizzaInfoFileExtension)")
     }
     
     private func copyPizzaInfoToDocumentsIfNeeded() {
@@ -87,7 +91,7 @@ class PizzaListTableViewModel {
     }
     
     func loadFavoritePizzaData() -> [Pizza] {
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)?.first else {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return []
         }
         
@@ -123,7 +127,7 @@ class PizzaListTableViewModel {
     
     @objc
     func saveFavoritePizza() {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)?.first else {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             print("Couldn't find documents directory")
             return
         }

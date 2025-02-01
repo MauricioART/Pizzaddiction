@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PizzeriaListViewModelDelegate {
+protocol PizzeriaListViewModelDelegate : AnyObject{
     func shouldReloadTableData()
 }
 
@@ -27,7 +27,7 @@ class PizzeriaListTableViewModel {
     
     var favoritePizzeriaCount : Int { favoritePizzeria.count }
     
-    var delegate: PizzeriaListViewModelDelegate?
+    weak var delegate: PizzeriaListViewModelDelegate?
     
     init() {
         self.pizzeriaList = loadPizzeriaData()
@@ -92,7 +92,7 @@ class PizzeriaListTableViewModel {
     }
     
     @objc
-    func saveFavoritePizzeria() {
+    func saveFavoritePizzeria(onFinish: (()->())? = nil) {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
                                                                 in: .userDomainMask).first
         else {
@@ -114,6 +114,8 @@ class PizzeriaListTableViewModel {
         } catch {
             assertionFailure("Cannot encode favorite pizzeria: \(error.localizedDescription)")
         }
+        
+        onFinish?()
     }
 }
 

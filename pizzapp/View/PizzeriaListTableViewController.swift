@@ -13,6 +13,7 @@ class PizzeriaListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Pizza Places"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: viewModel.pizzeriaCellIdentifier)
         viewModel.delegate = self
 
@@ -48,12 +49,11 @@ class PizzeriaListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let pizzeria = viewModel.pizzeria(at: indexPath)
-        if (pizzeria.location != nil){
-            let pizzeriaDetailViewController = PizzeriaLocationViewController(pizzeria: pizzeria)
+        let pizzeriaDetailViewController = PizzeriaDetailViewController(pizzeria: pizzeria)
             
-            navigationController?.pushViewController(pizzeriaDetailViewController,
+        navigationController?.pushViewController(pizzeriaDetailViewController,
                                                      animated: true)
-        }
+        
         }
         
     
@@ -69,6 +69,9 @@ class PizzeriaListTableViewController: UITableViewController {
             }else{
                 self?.viewModel.addPizzeriaToFavorites(at: indexPath)
             }
+            self?.viewModel.saveFavoritePizzeria(onFinish: {
+                NotificationCenter.default.post(name: .favoritesUpdated, object: nil)
+            })
             completion(true)
         }
         
@@ -81,7 +84,7 @@ class PizzeriaListTableViewController: UITableViewController {
             favoriteAction.image = UIImage(systemName: "heart")
         }
         
-        NotificationCenter.default.post(name: .favoritesUpdated, object: nil)
+        
 
         return UISwipeActionsConfiguration(actions: [favoriteAction])
     }
