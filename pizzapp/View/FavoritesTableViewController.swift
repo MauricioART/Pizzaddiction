@@ -25,17 +25,17 @@ class FavoritesTableViewController: UITableViewController {
 
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
+//    override func viewWillAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
 //
 //        let authenticationViewController = AuthenticationViewController()
 //        present(authenticationViewController, animated: true)
 //    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        tableView.reloadData()
-    }
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+////        tableView.reloadData()
+//    }
 
     @objc func updateFavorites(){
         viewModel.updateFavorites()
