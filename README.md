@@ -76,7 +76,7 @@ Check out some screenshots of the app in action:
 ![Create Custom Pizza](Images/FavoritesView.png)
 
 ### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/CustomePizzaView.png)
+![Create Custom Pizza](Images/CustomePizzaViewScaled.png)
 
 )
 
