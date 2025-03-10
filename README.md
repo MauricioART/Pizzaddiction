@@ -57,10 +57,10 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 Check out some screenshots of the app in action:
 
 ### 🍕 Pizza List View
-| ![Pizza List View](Images/PizzasView.png) | ### 🛠️ Pizza Detail View
+![Pizza List View](Images/PizzasView.png)  
+
+### 🛠️ Pizza Detail View
 ![Create Custom Pizza](Images/PizzaDetailView.png
-
-
 
 ### 🏠 Pizzeria List View 
 ![Pizzeria Detail View](Images/PizzeriasView.png)
@@ -71,14 +71,12 @@ Check out some screenshots of the app in action:
 ### 🛠️ Pizzeria Location View
 ![Create Custom Pizza](Images/PizzeriaLocationView.png)
 
-
 ### 🛠️ Favorites View
 ![Create Custom Pizza](Images/FavoritesView.png)
 
 ### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/CustomePizzaViewScaled.png)
+![Create Custom Pizza](Images/CustomePizzaView.png)
 
-)
 
 ## 🤝 Contribution
 Want to contribute? Follow these steps:
