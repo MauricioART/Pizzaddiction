@@ -57,29 +57,28 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 Check out some screenshots of the app in action:
 
 ### 🍕 Pizza List View
-![Pizza List View](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.29.29.png)
+![Pizza List View](Images/PizzasView.png)
 
-### 🏠 Pizzeria Detail View with Map Integration
-![Pizzeria Detail View](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.29.40.png)
+### 🛠️ Pizza Detail View
+![Create Custom Pizza](Images/PizzaDetailView.png
 
-### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.32.47.png)
+### 🏠 Pizzeria List View 
+![Pizzeria Detail View](Images/PizzeriasView.png)
 
+### 🛠️ Pizzeria Detail View
+![Locate pizzeria](Images/PizzeriaDetailView.png)
 
-### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.21.png)
-
-
-### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.00.png)
+### 🛠️ Pizzeria Location View
+![Create Custom Pizza](Images/PizzeriaLocationView.png)
 
 
-### 🛠️ Create Custom Pizza Screen
-![Locate pizzeria](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.14.png)
-
+### 🛠️ Favorites View
+![Create Custom Pizza](Images/FavoritesView.png)
 
 ### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.52.png)
+![Create Custom Pizza](Images/CustomePizzaView.png)
+
+)
 
 ## 🤝 Contribution
 Want to contribute? Follow these steps:
