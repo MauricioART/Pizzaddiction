@@ -55,21 +55,46 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 
 ## 📸 Screenshots
 Check out some screenshots of the app in action:
-| 🍕 Pizza List View | 🛠️ Pizza Detail View |
-|--------------------|---------------------|
-| ![Pizza List View](Images/PizzasView.png) | ![Pizza Detail View](Images/PizzaDetailView.png) |
 
-| 🏠 Pizzeria List View | 🛠️ Pizzeria Detail View |
-|----------------------|------------------------|
-| ![Pizzeria List View](Images/PizzeriasView.png) | ![Pizzeria Detail View](Images/PizzeriaDetailView.png) |
+<table>
+  <tr>
+    <td align="center">
+      <strong>🍕 Pizza List View</strong><br>
+      <img src="Images/PizzasView.png" width="45%">
+    </td>
+    <td align="center">
+      <strong>🛠️ Pizza Detail View</strong><br>
+      <img src="Images/PizzaDetailView.png" width="45%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>🏠 Pizzeria List View</strong><br>
+      <img src="Images/PizzeriasView.png" width="45%">
+    </td>
+    <td align="center">
+      <strong>🛠️ Pizzeria Detail View</strong><br>
+      <img src="Images/PizzeriaDetailView.png" width="45%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>🛠️ Pizzeria Location View</strong><br>
+      <img src="Images/PizzeriaLocationView.png" width="45%">
+    </td>
+    <td align="center">
+      <strong>🛠️ Favorites View</strong><br>
+      <img src="Images/FavoritesView.png" width="45%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <strong>🛠️ Create Custom Pizza Screen</strong><br>
+      <img src="Images/CustomePizzaViewScaled.png" width="45%">
+    </td>
+  </tr>
+</table>
 
-| 🛠️ Pizzeria Location View | 🛠️ Favorites View |
-|--------------------------|--------------------|
-| ![Pizzeria Location View](Images/PizzeriaLocationView.png) | ![Favorites View](Images/FavoritesView.png) |
-
-| 🛠️ Create Custom Pizza Screen |  |
-|--------------------------------|--|
-| ![Create Custom Pizza](Images/CustomePizzaViewScaled.png) |  |
 
 
 ## 🤝 Contribution
