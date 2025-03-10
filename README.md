@@ -55,30 +55,22 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 
 ## 📸 Screenshots
 Check out some screenshots of the app in action:
+| 🍕 Pizza List View | 🛠️ Pizza Detail View |
+|--------------------|---------------------|
+| ![Pizza List View](Images/PizzasView.png) | ![Pizza Detail View](Images/PizzaDetailView.png) |
 
-### 🍕 Pizza List View
-| ![Pizza List View](Images/PizzasView.png) | ### 🛠️ Pizza Detail View
-![Create Custom Pizza](Images/PizzaDetailView.png
+| 🏠 Pizzeria List View | 🛠️ Pizzeria Detail View |
+|----------------------|------------------------|
+| ![Pizzeria List View](Images/PizzeriasView.png) | ![Pizzeria Detail View](Images/PizzeriaDetailView.png) |
 
+| 🛠️ Pizzeria Location View | 🛠️ Favorites View |
+|--------------------------|--------------------|
+| ![Pizzeria Location View](Images/PizzeriaLocationView.png) | ![Favorites View](Images/FavoritesView.png) |
 
+| 🛠️ Create Custom Pizza Screen |  |
+|--------------------------------|--|
+| ![Create Custom Pizza](Images/CustomePizzaViewScaled.png) |  |
 
-### 🏠 Pizzeria List View 
-![Pizzeria Detail View](Images/PizzeriasView.png)
-
-### 🛠️ Pizzeria Detail View
-![Locate pizzeria](Images/PizzeriaDetailView.png)
-
-### 🛠️ Pizzeria Location View
-![Create Custom Pizza](Images/PizzeriaLocationView.png)
-
-
-### 🛠️ Favorites View
-![Create Custom Pizza](Images/FavoritesView.png)
-
-### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](Images/CustomePizzaViewScaled.png)
-
-)
 
 ## 🤝 Contribution
 Want to contribute? Follow these steps:
