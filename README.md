@@ -60,10 +60,26 @@ Check out some screenshots of the app in action:
 ![Pizza List View](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.29.29.png)
 
 ### 🏠 Pizzeria Detail View with Map Integration
-![Pizzeria Detail View](images/pizzeria-map.png)
+![Pizzeria Detail View](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.29.40.png)
 
 ### 🛠️ Create Custom Pizza Screen
-![Create Custom Pizza](images/custom-pizza.png)
+![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.32.47.png)
+
+
+### 🛠️ Create Custom Pizza Screen
+![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.21.png)
+
+
+### 🛠️ Create Custom Pizza Screen
+![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.00.png)
+
+
+### 🛠️ Create Custom Pizza Screen
+![Locate pizzeria](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.14.png)
+
+
+### 🛠️ Create Custom Pizza Screen
+![Create Custom Pizza](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.33.52.png)
 
 ## 🤝 Contribution
 Want to contribute? Follow these steps:
