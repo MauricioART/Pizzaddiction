@@ -47,7 +47,7 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/PizzeriaApp.git
+   git clone https://github.com/MauricioART/Pizzeriaddiction.git
    ```
 2. Open the project in **Xcode**.
 3. Install any dependencies (if using CocoaPods or Swift Package Manager).
@@ -56,9 +56,14 @@ The **Pizzaddiction** is an iOS application built using **UIKit** and programmat
 ## 📸 Screenshots
 Check out some screenshots of the app in action:
 
-- **Pizza List View**
-- **Pizzeria Detail View with Map Integration**
-- **Create Custom Pizza Screen**
+### 🍕 Pizza List View
+![Pizza List View](Images/Simulator Screenshot - iPhone 16 Pro - 2025-02-19 at 16.29.29.png)
+
+### 🏠 Pizzeria Detail View with Map Integration
+![Pizzeria Detail View](images/pizzeria-map.png)
+
+### 🛠️ Create Custom Pizza Screen
+![Create Custom Pizza](images/custom-pizza.png)
 
 ## 🤝 Contribution
 Want to contribute? Follow these steps:
